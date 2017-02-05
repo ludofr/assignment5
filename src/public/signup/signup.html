@@ -1,0 +1,92 @@
+<!doctype html>
+
+<div class="container">
+    <h2 class="text-center">Sign up for our newsletter!</h2>
+    <div class="text-center">
+        Fill out the form below to receive updates on our restaurant.
+    </div>
+
+    <fieldset>
+        <legend>Registration form</legend>
+        <form id="signupForm" name="signupCtrlForm" novalidate>
+
+            <input type="text" name="firstname"
+                               placeholder="Enter your first name"
+                               ng-model="signupCtrl.user.firstname"
+                               ng-minlength="1"
+                               size="35"
+                               required>
+            <span ng-if="signupCtrlForm.firstname.$error.required && signupCtrlForm.firstname.$touched">
+            Please entrer your first name
+            </span>
+
+            <br>
+
+            <input type="text" name="lastname"
+                               placeholder="Enter your last name"
+                               ng-model="signupCtrl.user.lastname"
+                               size="35"
+                               ng-minlength="1"
+                               required>
+            <span ng-if="signupCtrlForm.lastname.$error.required && signupCtrlForm.lastname.$touched">
+            Please entrer your last name
+            </span>
+
+            <br>
+
+            <input type="email" name="email"
+                                placeholder="Email"
+                                ng-model="signupCtrl.user.email"
+                                size="35"
+                                required>
+            <span ng-if="signupCtrlForm.email.$invalid && signupCtrlForm.email.$touched">
+            Must be a valid email address: handle@domain format
+            </span>
+
+            <br>
+
+            <input type="text" name="phone"
+                               placeholder="Phone ###-###-####"
+                               ng-model="signupCtrl.user.phone"
+                               size="35"
+                               pattern="(\d{3})-(\d{3})-(\d{4})">
+            <span ng-if="signupCtrlForm.phone.$invalid && signupCtrlForm.phone.$touched">
+            Phone must be in the format ###-###-####.
+          </span>
+            <br>
+
+            <input type="text" name="favdish"
+                               placeholder="Enter the code of your favorite dish"
+                               ng-model="signupCtrl.user.favdish"
+                               ng-minlength="1"
+                               size="35"
+                               ng-keyup="signupCtrl.categoryReset()"
+                               required>
+            <span ng-if="signupCtrlForm.favdish.$error.required && signupCtrlForm.favdish.$touched">
+            Please entrer your favorite dish
+            </span>
+
+            <br>
+
+            <button class="btn btn-default submit-button"
+                    ng-disabled="signupCtrlForm.$invalid"
+                    ng-click="signupCtrl.submit()">Submit</button>
+
+            <br>
+
+            <div ng-if="signupCtrl.categoryError && !signupCtrlForm.favdish.$error.required">
+              <div class="alert alert-danger infoBanner">
+                  <strong>{{signupCtrl.categoryErrorText}}</strong>
+              </div>
+            </div>
+
+            <div ng-if="signupCtrlForm.$valid && signupCtrl.registrationSuccessful();">
+              <div class="alert alert-success infoBanner">
+                  <strong>{{signupCtrl.registrationOK}}</strong>
+              </div>
+            </div>
+
+        </form>
+    </fieldset>
+
+</div>
