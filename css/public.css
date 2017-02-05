@@ -113,6 +113,30 @@ h3.menu-item-title {
 }
 /* END SINGLE CATEGORY PAGE */
 
+/* SIGNUP AND MY INFO PAGES */
+
+legend {
+  color:white;
+}
+
+#signupForm input {
+  color:black;
+  margin-bottom: 10px;
+}
+
+.submit-button
+{
+  margin-bottom: 20px;
+}
+
+.ng-touched.ng-valid {
+  border: 2px green solid;
+}
+
+.ng-touched.ng-invalid {
+  border: 2px red solid;
+}
+/* END SIGNUP AND MY INFO PAGES */
 
 /********** Large devices only **********/
 @media (min-width: 1200px) {
